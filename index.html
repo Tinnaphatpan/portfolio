@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Tinnaphat</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+</head>
+<body>
+
+  <!-- Animated bg blobs -->
+  <div class="bg-blobs">
+    <div class="blob blob--1"></div>
+    <div class="blob blob--2"></div>
+    <div class="blob blob--3"></div>
+    <div class="blob blob--4"></div>
+  </div>
+
+  <div class="layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar__inner">
+        <div class="sidebar__profile">
+          <img src="assets/myphoto.jpg" alt="Tinnaphat" class="sidebar__avatar"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" />
+          <div class="sidebar__avatar-fallback"><i class="fa-regular fa-user"></i></div>
+        </div>
+        <nav class="sidebar__nav">
+          <p class="sidebar__label">Categories</p>
+          <a href="#about"    class="sidebar__link active" data-section="about"><i class="fa-solid fa-flag"></i> About</a>
+          <a href="#skills"   class="sidebar__link" data-section="skills"><i class="fa-solid fa-layer-group"></i> Skills</a>
+          <a href="#projects" class="sidebar__link" data-section="projects"><i class="fa-solid fa-code"></i> Projects</a>
+          <a href="#contact"  class="sidebar__link" data-section="contact"><i class="fa-regular fa-envelope"></i> Contact</a>
+        </nav>
+        <div class="sidebar__socials">
+          <p class="sidebar__label">Social Link</p>
+          <a href="https://github.com/tinnaphatpan-svg" target="_blank" rel="noopener" class="sidebar__link"><i class="fa-brands fa-github"></i> GitHub</a>
+          <a href="https://www.instagram.com/zankky_yaky/" target="_blank" rel="noopener" class="sidebar__link"><i class="fa-brands fa-instagram"></i> Instagram</a>
+          <a href="https://www.facebook.com/tinnaphat.pankong" target="_blank" rel="noopener" class="sidebar__link"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+          <a href="mailto:Tinnaphatpan@gmail.com" class="sidebar__link"><i class="fa-regular fa-envelope"></i> Email</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- MOBILE TOPBAR -->
+    <header class="topbar">
+      <button class="topbar__toggle" id="sidebarToggle"><i class="fa-solid fa-bars"></i></button>
+      <span class="topbar__logo">TP<span class="accent-dot">.</span></span>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="main-content" id="mainContent">
+
+      <!-- ABOUT -->
+      <section id="about" class="content-section">
+        <div class="about-card reveal">
+          <div class="about-card__text">
+            <h1 class="about-card__name">ทิณภัทร ปั้นคง</h1>
+            <p class="about-card__role">Full-Stack Developer &amp; AI Engineer</p>
+            <p class="about-card__desc">
+              สวัสดีครับ ผมแบงค์ นักพัฒนาซอฟต์แวร์ที่ชอบสร้างสิ่งใหม่ๆ
+              ศึกษาอยู่ที่ <strong>KMUTNB</strong> สาขาวิทยาการคอมพิวเตอร์
+              มีความสนใจด้าน Full-Stack Web Development และ AI Engineering
+            </p>
+            <div class="about-card__stats">
+              <div class="about-stat"><span class="about-stat__num">10+</span><span class="about-stat__label">Projects</span></div>
+              <div class="about-stat"><span class="about-stat__num">6+</span><span class="about-stat__label">Technologies</span></div>
+              <div class="about-stat"><span class="about-stat__num">3+</span><span class="about-stat__label">Years Coding</span></div>
+            </div>
+            <a href="#contact" class="cta-btn">Contact Me <i class="fa-solid fa-arrow-right"></i></a>
+          </div>
+          <div class="about-card__visual">
+            <div class="code-card">
+              <div class="code-header">
+                <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
+                <span class="code-filename">about.ts</span>
+              </div>
+              <pre class="code-body"><code><span class="ck">const</span> <span class="cv">tinnaphat</span> <span class="co">=</span> {
+  <span class="cp">role</span><span class="co">:</span>       <span class="cs">"Full-Stack Dev"</span>,
+  <span class="cp">university</span><span class="co">:</span> <span class="cs">"KMUTNB"</span>,
+  <span class="cp">passion</span><span class="co">:</span>   [
+    <span class="cs">"Web Dev"</span>,
+    <span class="cs">"AI / ML"</span>,
+    <span class="cs">"Open Source"</span>,
+  ],
+  <span class="cp">available</span><span class="co">:</span> <span class="cb">true</span>,
+};</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SKILLS -->
+      <section id="skills" class="content-section reveal">
+        <h2 class="section-title">My Skills</h2>
+        <div style="display:flex;flex-direction:column;gap:16px;">
+          <!-- Row 1 — left to right -->
+          <div class="skills-marquee-wrapper">
+            <div class="skills-marquee-track">
+              <div class="tech-card"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div><div class="tech-card"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div><div class="tech-card"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div><div class="tech-card"><i class="devicon-typescript-plain colored"></i><span>TypeScript</span></div><div class="tech-card"><i class="devicon-python-plain colored"></i><span>Python</span></div><div class="tech-card"><i class="devicon-react-original colored"></i><span>React</span></div><div class="tech-card"><i class="devicon-html5-plain colored"></i><span>HTML5</span></div><div class="tech-card"><i class="devicon-css3-plain colored"></i><span>CSS3</span></div><div class="tech-card"><i class="devicon-javascript-plain colored"></i><span>JavaScript</span></div><div class="tech-card"><i class="devicon-typescript-plain colored"></i><span>TypeScript</span></div><div class="tech-card"><i class="devicon-python-plain colored"></i><span>Python</span></div><div class="tech-card"><i class="devicon-react-original colored"></i><span>React</span></div>
+            </div>
+          </div>
+          <!-- Row 2 — right to left -->
+          <div class="skills-marquee-wrapper skills-marquee-wrapper--reverse">
+            <div class="skills-marquee-track">
+              <div class="tech-card"><i class="devicon-nextjs-original colored"></i><span>Next.js</span></div><div class="tech-card"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div><div class="tech-card"><i class="devicon-spring-plain colored"></i><span>Spring Boot</span></div><div class="tech-card"><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span></div><div class="tech-card"><i class="devicon-git-plain colored"></i><span>Git</span></div><div class="tech-card"><i class="devicon-docker-plain colored"></i><span>Docker</span></div><div class="tech-card"><i class="devicon-nextjs-original colored"></i><span>Next.js</span></div><div class="tech-card"><i class="devicon-nodejs-plain colored"></i><span>Node.js</span></div><div class="tech-card"><i class="devicon-spring-plain colored"></i><span>Spring Boot</span></div><div class="tech-card"><i class="devicon-postgresql-plain colored"></i><span>PostgreSQL</span></div><div class="tech-card"><i class="devicon-git-plain colored"></i><span>Git</span></div><div class="tech-card"><i class="devicon-docker-plain colored"></i><span>Docker</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROJECTS -->
+      <section id="projects" class="content-section">
+        <h2 class="section-title">My Projects</h2>
+        <div class="projects-grid">
+          <div class="project-card reveal">
+            <div class="project-card__body">
+              <h3>Job Portal</h3>
+              <p>แพลตฟอร์มหางานครบวงจร รองรับผู้หางาน นายจ้าง และ Admin พร้อม JWT auth, RBAC, avatar upload และ real-time job search</p>
+              <div class="project-tags"><span>Next.js</span><span>Spring Boot</span><span>PostgreSQL</span></div>
+            </div>
+            <a href="https://github.com/Tinnaphatpan/Job-Portal" target="_blank" rel="noopener" class="project-btn">Open <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+          <div class="project-card reveal reveal--delay-1">
+            <div class="project-card__body">
+              <h3>Real-time Chat App</h3>
+              <p>แอปแชทแบบ real-time รองรับหลาย room พร้อม live notification และ online status indicator</p>
+              <div class="project-tags"><span>React</span><span>Socket.io</span><span>Node.js</span></div>
+            </div>
+            <a href="https://github.com/tinnaphatpan-svg" target="_blank" rel="noopener" class="project-btn">Open <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+          <div class="project-card reveal reveal--delay-2">
+            <div class="project-card__body">
+              <h3>Made-to-Order Restaurant</h3>
+              <p>ระบบร้านอาหารสั่งตามออเดอร์ มี menu management, order tracking และ QR code สำหรับสั่งอาหารที่โต๊ะ</p>
+              <div class="project-tags"><span>Next.js</span><span>Spring Boot</span><span>MySQL</span></div>
+            </div>
+            <a href="https://github.com/tinnaphatpan-svg" target="_blank" rel="noopener" class="project-btn">Open <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+          <div class="project-card reveal reveal--delay-3">
+            <div class="project-card__body">
+              <h3>AI Portfolio Assistant</h3>
+              <p>Portfolio อัจฉริยะที่ตอบคำถามเกี่ยวกับตัวเองโดยใช้ Claude AI API + FastAPI backend</p>
+              <div class="project-tags"><span>Python</span><span>Claude AI</span><span>FastAPI</span></div>
+            </div>
+            <a href="https://github.com/tinnaphatpan-svg" target="_blank" rel="noopener" class="project-btn">Open <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section id="contact" class="content-section">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-grid">
+          <div class="contact-links reveal">
+            <p class="contact-intro">มีอะไรอยากคุยด้วย ทักมาได้เลยครับ 👋</p>
+            <a href="mailto:Tinnaphatpan@gmail.com" class="contact-link"><i class="fa-regular fa-envelope"></i><span>Tinnaphatpan@gmail.com</span></a>
+            <a href="https://github.com/tinnaphatpan-svg" target="_blank" rel="noopener" class="contact-link"><i class="fa-brands fa-github"></i><span>tinnaphatpan-svg</span></a>
+            <a href="https://www.instagram.com/zankky_yaky/" target="_blank" rel="noopener" class="contact-link"><i class="fa-brands fa-instagram"></i><span>@zankky_yaky</span></a>
+            <a href="https://www.facebook.com/tinnaphat.pankong" target="_blank" rel="noopener" class="contact-link"><i class="fa-brands fa-facebook-f"></i><span>tinnaphat.pankong</span></a>
+          </div>
+          <form class="contact-form reveal reveal--delay-1" id="contactForm">
+            <div class="form-group"><label>ชื่อ / Name</label><input type="text" name="name" placeholder="Your name" required /></div>
+            <div class="form-group"><label>อีเมล / Email</label><input type="email" name="email" placeholder="your@email.com" required /></div>
+            <div class="form-group"><label>ข้อความ / Message</label><textarea name="message" rows="4" placeholder="Write your message here..." required></textarea></div>
+            <button type="submit" class="cta-btn">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+            <p class="form__note" id="formNote"></p>
+          </form>
+        </div>
+      </section>
+
+      <footer class="main-footer">
+        <p>&copy; <span id="year"></span> ทิณภัทร ปั้นคง — Built with <span style="color:#e05c7a">&#10084;</span></p>
+      </footer>
+
+    </main>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
