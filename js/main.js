@@ -2,40 +2,33 @@
    main.js — Sidebar, Reveal on Scroll, Contact Form
    ===================================================== */
 
-/* ---------- 1. Mobile sidebar toggle ---------- */
-const sidebar       = document.getElementById('sidebar');
-const sidebarToggle = document.getElementById('sidebarToggle');
+/* ---------- 1. Mobile menu toggle ---------- */
+const hamburgerBtn = document.getElementById('hamburgerBtn');
+const mobileMenu   = document.getElementById('mobileMenu');
 
-if (sidebarToggle) {
-  sidebarToggle.addEventListener('click', () => {
-    sidebar.classList.toggle('open');
+if (hamburgerBtn && mobileMenu) {
+  hamburgerBtn.addEventListener('click', () => {
+    const isOpen = mobileMenu.classList.toggle('open');
+    hamburgerBtn.classList.toggle('active', isOpen);
   });
 }
 
-document.querySelectorAll('.sidebar__link').forEach((link) => {
+document.querySelectorAll('.topnav__mobile-link').forEach((link) => {
   link.addEventListener('click', () => {
-    if (window.innerWidth <= 900) sidebar.classList.remove('open');
+    mobileMenu.classList.remove('open');
+    hamburgerBtn.classList.remove('active');
   });
 });
 
-document.addEventListener('click', (e) => {
-  if (window.innerWidth <= 900 &&
-      sidebar.classList.contains('open') &&
-      !sidebar.contains(e.target) &&
-      e.target !== sidebarToggle) {
-    sidebar.classList.remove('open');
-  }
-});
-
-/* ---------- 2. Active sidebar link on scroll ---------- */
+/* ---------- 2. Active nav link on scroll ---------- */
 const sections  = document.querySelectorAll('.content-section[id]');
-const sideLinks = document.querySelectorAll('.sidebar__link[data-section]');
+const navLinks  = document.querySelectorAll('.topnav__link[data-section], .topnav__mobile-link[data-section]');
 
 const sectionObserver = new IntersectionObserver(
   (entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        sideLinks.forEach((link) => {
+        navLinks.forEach((link) => {
           link.classList.toggle('active', link.dataset.section === entry.target.id);
         });
       }
@@ -71,6 +64,67 @@ if (form) {
   });
 }
 
-/* ---------- 5. Footer year ---------- */
+/* ---------- 5. Language toggle ---------- */
+const langBtn = document.getElementById('langBtn');
+let currentLang = 'th';
+
+const translations = {
+  th: {
+    educationTitle: 'การศึกษา',
+    eduUniversity:  'มหาวิทยาลัยเทคโนโลยีพระจอมเกล้าพระนครเหนือ',
+    eduMajor:       'คณิตศาสตร์กับวิทยาการคอมพิวเตอร์ (MC)',
+    eduYear:        'ชั้นปีที่ 3 &nbsp;·&nbsp; 2022 – ปัจจุบัน',
+    aboutName:    'ทิณภัทร ปั้นคง',
+    aboutRole:    'Full-Stack Developer',
+    aboutDesc:    'สวัสดีครับ ผมแบงค์ นักพัฒนาซอฟต์แวร์ที่ชอบสร้างสิ่งใหม่ๆ ศึกษาอยู่ที่ <strong>KMUTNB</strong> สาขาวิทยาการคอมพิวเตอร์ มีความสนใจด้าน Full-Stack Web Development และ AI Engineering',
+    skillsTitle:  'My Skills',
+    projectsTitle:'My Projects',
+    jobPortalDesc:'แพลตฟอร์มหางานครบวงจร รองรับผู้หางาน นายจ้าง และ Admin พร้อม JWT auth, RBAC, avatar upload และ real-time job search',
+    restaurantDesc:'ระบบร้านอาหารสั่งตามออเดอร์ มี menu management, order tracking และ QR code สำหรับสั่งอาหารที่โต๊ะ',
+    contactTitle: 'ติดต่อ',
+    contactIntro: 'มีอะไรอยากคุยด้วย ทักมาได้เลยครับ 👋',
+    formName:     'ชื่อ',
+    formEmail:    'อีเมล',
+    formMessage:  'ข้อความ',
+  },
+  en: {
+    educationTitle: 'Education',
+    eduUniversity:  "King Mongkut's University of Technology North Bangkok",
+    eduMajor:       'Mathematics with Computer Science (MC)',
+    eduYear:        'Year 3 &nbsp;·&nbsp; 2022 – Present',
+    aboutName:    'Tinnaphat Pankong',
+    aboutRole:    'Full-Stack Developer',
+    aboutDesc:    "Hi! I'm Bank, a software developer who loves building new things. Studying at <strong>KMUTNB</strong>, Computer Science. Passionate about Full-Stack Web Development and AI Engineering.",
+    skillsTitle:  'My Skills',
+    projectsTitle:'My Projects',
+    jobPortalDesc:'A comprehensive job portal supporting job seekers, employers, and admins with JWT auth, RBAC, avatar upload, and real-time job search.',
+    restaurantDesc:'A made-to-order restaurant system with menu management, order tracking, and QR code for table ordering.',
+    contactTitle: 'Contact',
+    contactIntro: 'Got something to say? Feel free to reach out! 👋',
+    formName:     'Name',
+    formEmail:    'Email',
+    formMessage:  'Message',
+  },
+};
+
+function applyLang(lang) {
+  document.querySelectorAll('[data-i18n]').forEach((el) => {
+    const key = el.dataset.i18n;
+    if (translations[lang][key] !== undefined) {
+      el.innerHTML = translations[lang][key];
+    }
+  });
+  langBtn.textContent = lang === 'th' ? 'EN' : 'TH';
+  document.documentElement.lang = lang;
+}
+
+if (langBtn) {
+  langBtn.addEventListener('click', () => {
+    currentLang = currentLang === 'th' ? 'en' : 'th';
+    applyLang(currentLang);
+  });
+}
+
+/* ---------- 6. Footer year ---------- */
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
