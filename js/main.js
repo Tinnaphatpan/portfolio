@@ -58,7 +58,7 @@ const formNote = document.getElementById('formNote');
 if (form) {
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    formNote.textContent = 'sent successfully!';
+    formNote.textContent = currentLang === 'th' ? 'ส่งสำเร็จแล้ว ✓' : 'Sent successfully! ✓';
     form.reset();
     setTimeout(() => { formNote.textContent = ''; }, 5000);
   });
