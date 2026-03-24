@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio — Tinnaphat</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/animations.css" />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <!-- Font Awesome for social icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+</head>
+<body>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section class="hero" id="home">
+    <div class="hero__bg-grid"></div>
+
+    <div class="hero__content">
+      <div class="hero__photo-wrapper reveal">
+        <!-- Replace 'assets/profile.jpg' with your actual photo path -->
+        <img src="assets/myphoto.jpg" alt="Profile Photo" class="hero__photo" onerror="this.style.display='none'; document.querySelector('.hero__photo-fallback').style.display='flex';" />
+        <div class="hero__photo-fallback">
+          <i class="fa-regular fa-user"></i>
+        </div>
+      </div>
+
+      <div class="hero__text">
+        <p class="hero__greeting reveal reveal--delay-1">แบงค์นะครับ</p>
+        <h1 class="hero__name reveal reveal--delay-2">ทิณภัทร ปั้นคง</h1>
+        <p class="hero__title reveal reveal--delay-3">Full-Stack Developer &amp; AI Engineer</p>
+
+        <div class="hero__socials reveal reveal--delay-4">
+          <!-- ===== SOCIAL LINKS — แก้ href เป็น URL ของตัวเองได้เลย ===== -->
+          <a href="https://github.com/tinnaphatpan-svg" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="https://www.instagram.com/zankky_yaky/" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://www.facebook.com/tinnaphat.pankong" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook">
+            <i class="fa-brands fa-facebook-f"></i>
+          </a>
+          <!-- ============================================================ -->
+        </div>
+
+        <a href="#contact" class="cta-btn reveal reveal--delay-4">Contact Me</a>
+      </div>
+    </div>
+
+    <div class="hero__scroll-hint">
+      <span>scroll</span>
+      <div class="hero__scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ========== ABOUT SECTION ========== -->
+  <section class="section about" id="about">
+    <div class="container">
+      <h2 class="section__title">About Me</h2>
+      <div class="about__grid">
+        <div class="about__text reveal">
+          <!-- แก้ข้อความแนะนำตัวเองได้เลยครับ -->
+          <p>
+            สวัสดีครับ ผมชื่อ <strong>ด้านบนก็มีครับขึ้นไปอ่านเอง</strong> นักพัฒนาซอฟต์แวร์ที่ชอบสร้างสิ่งใหม่ๆ
+            และแก้ไขปัญหาด้วยโค้ดที่สะอาดและมีประสิทธิภาพ
+          </p>
+          <p>
+            ปัจจุบันศึกษาอยู่ที่ <strong>KMUTNB</strong> สาขาวิทยาการคอมพิวเตอร์
+            มีความสนใจด้าน Full-Stack Web Development และ  AI Engineer
+          </p>
+        </div>
+        <div class="about__details reveal reveal--delay-1">
+          <div class="detail-item">
+            <span class="detail-label">Location</span>
+            <span class="detail-value">แล้วแต่อารมณ์ครับ</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">University</span>
+            <span class="detail-value">KMUTNB สอบติดแบบ งงๆ</span>
+          </div>
+          <div class="detail-item">
+            <span class="detail-label">Status</span>
+            <span class="detail-value">อยู่ที่คนถาม ✅</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== SKILLS SECTION ========== -->
+  <section class="section skills" id="skills">
+    <div class="container">
+      <h2 class="section__title">Skills</h2>
+      <div class="skills__grid">
+
+        <!-- แก้ไขหรือเพิ่ม skill card ได้เลยครับ -->
+        <div class="skill-card reveal">
+          <div class="skill-card__icon"><i class="fa-brands fa-html5"></i></div>
+          <h3>HTML / CSS</h3>
+          <div class="skill-bar"><div class="skill-bar__fill" style="--level: 90%"></div></div>
+        </div>
+
+        <div class="skill-card reveal reveal--delay-1">
+          <div class="skill-card__icon"><i class="fa-brands fa-js"></i></div>
+          <h3>JavaScript</h3>
+          <div class="skill-bar"><div class="skill-bar__fill" style="--level: 80%"></div></div>
+        </div>
+
+        <div class="skill-card reveal reveal--delay-2">
+          <div class="skill-card__icon"><i class="fa-brands fa-python"></i></div>
+          <h3>Python</h3>
+          <div class="skill-bar"><div class="skill-bar__fill" style="--level: 75%"></div></div>
+        </div>
+
+        <div class="skill-card reveal reveal--delay-1">
+          <div class="skill-card__icon"><i class="fa-brands fa-react"></i></div>
+          <h3>React</h3>
+          <div class="skill-bar"><div class="skill-bar__fill" style="--level: 70%"></div></div>
+        </div>
+
+        <div class="skill-card reveal reveal--delay-2">
+          <div class="skill-card__icon"><i class="fa-solid fa-database"></i></div>
+          <h3>SQL / Database</h3>
+          <div class="skill-bar"><div class="skill-bar__fill" style="--level: 65%"></div></div>
+        </div>
+
+        <div class="skill-card reveal reveal--delay-3">
+          <div class="skill-card__icon"><i class="fa-brands fa-git-alt"></i></div>
+          <h3>Git</h3>
+          <div class="skill-bar"><div class="skill-bar__fill" style="--level: 80%"></div></div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== CONTACT SECTION ========== -->
+  <section class="section contact" id="contact">
+    <div class="container">
+      <h2 class="section__title">Contact</h2>
+      <p class="contact__subtitle reveal">มีอะไรอยากคุยด้วย ทักมาได้เลยครับ 👋</p>
+
+      <div class="contact__wrapper">
+        <div class="contact__info reveal">
+          <a href="mailto:your@email.com" class="contact-link">
+            <i class="fa-regular fa-envelope"></i>
+            <span>Tinnaphatpan@gmail.com</span>
+          </a>
+          <!-- เพิ่ม social links ซ้ำด้านล่างเพื่อให้เข้าถึงง่าย -->
+          <div class="contact__socials">
+            <a href="https://github.com/yourusername" target="_blank" rel="noopener" class="social-btn" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+            <a href="https://instagram.com/yourusername" target="_blank" rel="noopener" class="social-btn" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://facebook.com/yourusername" target="_blank" rel="noopener" class="social-btn" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+          </div>
+        </div>
+
+        <!-- Contact Form -->
+        <form class="contact__form reveal reveal--delay-1" id="contactForm">
+          <div class="form-group">
+            <label for="name">ชื่อ / Name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <label for="email">อีเมล / Email</label>
+            <input type="email" id="email" name="email" placeholder="your@email.com" required />
+          </div>
+          <div class="form-group">
+            <label for="message">ข้อความ / Message</label>
+            <textarea id="message" name="message" rows="5" placeholder="Write your message here…" required></textarea>
+          </div>
+          <button type="submit" class="cta-btn">Send Message <i class="fa-solid fa-paper-plane"></i></button>
+          <p class="form__note" id="formNote"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <p>© <span id="year"></span> Tinnaphat — Built with ❤️</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
