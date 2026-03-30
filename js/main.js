@@ -50,7 +50,7 @@ const revealObserver = new IntersectionObserver(
   },
   { threshold: 0.08 }
 );
-document.querySelectorAll('.reveal').forEach((el) => revealObserver.observe(el));
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale').forEach((el) => revealObserver.observe(el));
 
 /* ---------- 4. Contact form ---------- */
 const form     = document.getElementById('contactForm');
