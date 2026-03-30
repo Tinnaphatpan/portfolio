@@ -34,6 +34,15 @@ portfolio/
 
 ---
 
+## Production URL
+
+| Service | URL |
+|---|---|
+| Portfolio | https://portfolio-six-livid-10.vercel.app |
+| GitHub | https://github.com/Tinnaphatpan/portfolio |
+
+---
+
 ## เจ้าของ Portfolio
 
 | ข้อมูล | รายละเอียด |
