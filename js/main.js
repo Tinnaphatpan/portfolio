@@ -125,7 +125,42 @@ if (langBtn) {
   });
 }
 
-/* ---------- 6. Footer year ---------- */
+/* ---------- 6. Project image gallery ---------- */
+const galleries = {};
+
+function initGallery(id) {
+  const track = document.getElementById('track-' + id);
+  if (!track) return;
+  const images = Array.from(track.querySelectorAll('img'));
+  const dots   = Array.from(document.querySelectorAll('#dots-' + id + ' .gallery-dot'));
+  galleries[id] = { index: 0, count: images.length, images, dots };
+
+  const wrapper = track.closest('.project-showcase__gallery');
+  const startTimer = () => {
+    galleries[id].timer = setInterval(() => galleryNext(id), 4000);
+  };
+  wrapper.addEventListener('mouseenter', () => clearInterval(galleries[id].timer));
+  wrapper.addEventListener('mouseleave', startTimer);
+  startTimer();
+}
+
+function galleryGo(id, index) {
+  const g = galleries[id];
+  if (!g) return;
+  g.images[g.index].classList.remove('active');
+  if (g.dots[g.index]) g.dots[g.index].classList.remove('active');
+  g.index = ((index % g.count) + g.count) % g.count;
+  g.images[g.index].classList.add('active');
+  if (g.dots[g.index]) g.dots[g.index].classList.add('active');
+}
+
+function galleryNext(id) { galleryGo(id, galleries[id].index + 1); }
+function galleryPrev(id) { galleryGo(id, galleries[id].index - 1); }
+
+initGallery('jobportal');
+initGallery('restaurant');
+
+/* ---------- 8. Footer year ---------- */
 const yearEl = document.getElementById('year');
 if (yearEl) yearEl.textContent = new Date().getFullYear();
 

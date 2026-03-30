@@ -19,6 +19,31 @@
   --radius-sm:    10px;
 }
 
+/* ---- Three.js Canvases ---- */
+#stars-canvas {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+}
+#hero-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  border-radius: var(--radius-sm);
+}
+.about-card__visual {
+  position: relative;
+}
+.code-card {
+  position: relative;
+  z-index: 1;
+}
+
 /* ---- Reset ---- */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; font-size: 16px; }
@@ -566,95 +591,184 @@ img { display: block; max-width: 100%; }
 }
 
 /* =====================================================
-   PROJECTS GRID
+   PROJECT SHOWCASE (image slider + info)
    ===================================================== */
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 20px;
-}
-
-/* Projects Marquee */
-.projects-marquee-wrapper {
-  overflow: hidden;
-  mask: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-  -webkit-mask: linear-gradient(to right, transparent 0%, #000 8%, #000 92%, transparent 100%);
-}
-.projects-marquee-track {
+.project-showcase {
   display: flex;
-  gap: 20px;
-  width: max-content;
-  animation: marqueeScroll 18s linear infinite;
-}
-.projects-marquee-track:hover { animation-play-state: paused; }
-.project-card--marquee {
-  width: 340px;
-  flex-shrink: 0;
-  text-decoration: none;
-  color: inherit;
-  cursor: pointer;
-}
-
-.project-card {
   background: rgba(255,255,255,0.05);
   border: 1px solid rgba(255,255,255,0.09);
   border-radius: var(--radius);
-  padding: 28px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+  backdrop-filter: blur(10px);
+}
+.project-showcase:hover {
+  border-color: rgba(99,102,241,0.4);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.35);
+}
+.project-showcase--reverse { flex-direction: row-reverse; }
+
+/* Gallery */
+.project-showcase__gallery {
+  flex: 0 0 58%;
+  position: relative;
+  overflow: hidden;
+  background: #07080f;
+}
+.gallery-track {
+  width: 100%;
+  height: 100%;
+  min-height: 320px;
+}
+.gallery-track {
+  position: relative;
+}
+.gallery-track img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+.gallery-track img.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Nav buttons */
+.gallery-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.55);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: #fff;
+  font-size: 0.75rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s, transform 0.2s;
+  z-index: 2;
+  backdrop-filter: blur(6px);
+}
+.gallery-nav:hover {
+  background: rgba(99,102,241,0.75);
+  transform: translateY(-50%) scale(1.1);
+}
+.gallery-nav--prev { left: 12px; }
+.gallery-nav--next { right: 12px; }
+
+/* Dots */
+.gallery-dots {
+  position: absolute;
+  bottom: 14px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 7px;
+  z-index: 2;
+}
+.gallery-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.3);
+  cursor: pointer;
+  transition: background 0.25s, transform 0.25s;
+}
+.gallery-dot.active {
+  background: #fff;
+  transform: scale(1.35);
+}
+.gallery-dot:hover { background: rgba(255,255,255,0.7); }
+
+/* Info */
+.project-showcase__info {
+  flex: 1;
+  padding: 40px 36px;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  gap: 20px;
-  backdrop-filter: blur(10px);
-  transition: background 0.25s, border-color 0.25s, transform 0.25s;
+  gap: 18px;
+  justify-content: center;
 }
-.project-card:hover {
-  background: rgba(255,255,255,0.08);
-  border-color: rgba(99,102,241,0.35);
-  transform: translateY(-3px);
+.project-showcase__badge {
+  display: inline-flex;
+  align-self: flex-start;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 4px 13px;
+  border-radius: 99px;
+  background: rgba(99,102,241,0.15);
+  border: 1px solid rgba(99,102,241,0.3);
+  color: #a5b4fc;
 }
-.project-card h3 {
-  font-size: 1rem;
+.project-showcase__title {
+  font-family: var(--font-display);
+  font-size: 1.65rem;
   font-weight: 700;
   color: var(--color-text);
-  margin-bottom: 10px;
+  line-height: 1.2;
 }
-.project-card p {
-  font-size: 0.85rem;
+.project-showcase__desc {
+  font-size: 0.88rem;
   color: var(--color-muted);
-  line-height: 1.65;
-  margin-bottom: 14px;
+  line-height: 1.75;
 }
 .project-tags {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 7px;
 }
 .project-tags span {
   font-size: 0.72rem;
-  padding: 3px 10px;
+  padding: 4px 11px;
   border-radius: 99px;
   background: rgba(99,102,241,0.15);
   border: 1px solid rgba(99,102,241,0.3);
   color: #a5b4fc;
   font-weight: 500;
 }
-.project-btn {
+.project-showcase__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 4px;
+}
+.project-github-btn {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  align-self: flex-end;
-  padding: 8px 22px;
-  background: var(--color-accent);
-  color: #fff;
+  gap: 8px;
+  padding: 11px 22px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.13);
+  color: var(--color-text);
   border-radius: 99px;
-  font-size: 0.82rem;
+  font-size: 0.88rem;
   font-weight: 600;
-  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
 }
-.project-btn:hover {
-  background: #2563eb;
+.project-github-btn:hover {
+  background: rgba(255,255,255,0.11);
+  border-color: rgba(255,255,255,0.28);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(59,130,246,0.35);
+}
+
+@media (max-width: 768px) {
+  .project-showcase,
+  .project-showcase--reverse { flex-direction: column; }
+  .project-showcase__gallery { flex: none; width: 100%; min-height: 220px; }
+  .project-showcase__info { padding: 24px; gap: 14px; }
+  .project-showcase__title { font-size: 1.3rem; }
 }
 
 /* =====================================================

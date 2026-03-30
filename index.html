@@ -12,8 +12,12 @@
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body>
+
+  <!-- Three.js Particle Stars -->
+  <canvas id="stars-canvas"></canvas>
 
   <!-- Animated bg blobs -->
   <div class="bg-blobs">
@@ -97,6 +101,7 @@
             <a href="#contact" class="cta-btn">Contact Me <i class="fa-solid fa-arrow-right"></i></a>
           </div>
           <div class="about-card__visual">
+            <canvas id="hero-canvas"></canvas>
             <div class="code-card">
               <div class="code-header">
                 <span class="dot dot--red"></span><span class="dot dot--yellow"></span><span class="dot dot--green"></span>
@@ -139,44 +144,78 @@
       <!-- PROJECTS -->
       <section id="projects" class="content-section">
         <h2 class="section-title" data-i18n="projectsTitle">My Projects</h2>
-        <div class="projects-marquee-wrapper">
-          <div class="projects-marquee-track">
-            <!-- set 1 -->
-            <a href="https://github.com/Tinnaphatpan/Job-Portal" target="_blank" rel="noopener" class="project-card project-card--marquee">
-              <div class="project-card__body">
-                <h3>Job Portal</h3>
-                <p data-i18n="jobPortalDesc">แพลตฟอร์มหางานครบวงจร รองรับผู้หางาน นายจ้าง และ Admin พร้อม JWT auth, RBAC, avatar upload และ real-time job search</p>
-                <div class="project-tags"><span>Next.js</span><span>Spring Boot</span><span>PostgreSQL</span></div>
-              </div>
-              <span class="project-btn">Open <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-            </a>
-            <a href="https://github.com/Tinnaphatpan/made-to-order-restaurant" target="_blank" rel="noopener" class="project-card project-card--marquee">
-              <div class="project-card__body">
-                <h3>Made-to-Order Restaurant</h3>
-                <p data-i18n="restaurantDesc">ระบบร้านอาหารสั่งตามออเดอร์ มี menu management, order tracking และ QR code สำหรับสั่งอาหารที่โต๊ะ</p>
-                <div class="project-tags"><span>Next.js</span><span>Spring Boot</span><span>MySQL</span></div>
-              </div>
-              <span class="project-btn">Open <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-            </a>
-            <!-- set 2 (duplicate for seamless loop) -->
-            <a href="https://github.com/Tinnaphatpan/Job-Portal" target="_blank" rel="noopener" class="project-card project-card--marquee">
-              <div class="project-card__body">
-                <h3>Job Portal</h3>
-                <p data-i18n="jobPortalDesc">แพลตฟอร์มหางานครบวงจร รองรับผู้หางาน นายจ้าง และ Admin พร้อม JWT auth, RBAC, avatar upload และ real-time job search</p>
-                <div class="project-tags"><span>Next.js</span><span>Spring Boot</span><span>PostgreSQL</span></div>
-              </div>
-              <span class="project-btn">Open <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-            </a>
-            <a href="https://github.com/Tinnaphatpan/made-to-order-restaurant" target="_blank" rel="noopener" class="project-card project-card--marquee">
-              <div class="project-card__body">
-                <h3>Made-to-Order Restaurant</h3>
-                <p data-i18n="restaurantDesc">ระบบร้านอาหารสั่งตามออเดอร์ มี menu management, order tracking และ QR code สำหรับสั่งอาหารที่โต๊ะ</p>
-                <div class="project-tags"><span>Next.js</span><span>Spring Boot</span><span>MySQL</span></div>
-              </div>
-              <span class="project-btn">Open <i class="fa-solid fa-arrow-up-right-from-square"></i></span>
-            </a>
+
+        <!-- Job Portal -->
+        <div class="project-showcase reveal">
+          <div class="project-showcase__gallery">
+            <div class="gallery-track" id="track-jobportal">
+              <img src="assets/projects/made-to-order-restaurant/home.png" class="active" alt="Job Portal - หน้าหลัก">
+              <img src="assets/projects/made-to-order-restaurant/login.png" alt="Job Portal - เข้าสู่ระบบ">
+              <img src="assets/projects/made-to-order-restaurant/job-search.png" alt="Job Portal - ค้นหางาน">
+              <img src="assets/projects/made-to-order-restaurant/job-detail.png" alt="Job Portal - รายละเอียดงาน">
+              <img src="assets/projects/made-to-order-restaurant/edit-profile.png" alt="Job Portal - แก้ไขข้อมูล">
+            </div>
+            <button class="gallery-nav gallery-nav--prev" onclick="galleryPrev('jobportal')"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="gallery-nav gallery-nav--next" onclick="galleryNext('jobportal')"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="gallery-dots" id="dots-jobportal">
+              <span class="gallery-dot active" onclick="galleryGo('jobportal',0)"></span>
+              <span class="gallery-dot" onclick="galleryGo('jobportal',1)"></span>
+              <span class="gallery-dot" onclick="galleryGo('jobportal',2)"></span>
+              <span class="gallery-dot" onclick="galleryGo('jobportal',3)"></span>
+              <span class="gallery-dot" onclick="galleryGo('jobportal',4)"></span>
+            </div>
+          </div>
+          <div class="project-showcase__info">
+            <span class="project-showcase__badge">Web Application</span>
+            <h3 class="project-showcase__title">Job Portal</h3>
+            <p class="project-showcase__desc" data-i18n="jobPortalDesc">แพลตฟอร์มหางานครบวงจร รองรับผู้หางาน นายจ้าง และ Admin พร้อม JWT auth, RBAC, avatar upload และ real-time job search</p>
+            <div class="project-tags">
+              <span>Next.js</span><span>Spring Boot</span><span>PostgreSQL</span><span>JWT Auth</span>
+            </div>
+            <div class="project-showcase__actions">
+              <a href="https://tinnaphatjobportal.vercel.app" target="_blank" rel="noopener" class="cta-btn">Live Demo <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+              <a href="https://github.com/Tinnaphatpan/Job-Portal" target="_blank" rel="noopener" class="project-github-btn"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
           </div>
         </div>
+
+        <!-- Made-to-Order Restaurant -->
+        <div class="project-showcase project-showcase--reverse reveal">
+          <div class="project-showcase__gallery">
+            <div class="gallery-track" id="track-restaurant">
+              <img src="assets/projects/job-portal/home.png" class="active" alt="Restaurant - หน้าหลัก">
+              <img src="assets/projects/job-portal/menu.png" alt="Restaurant - เมนู">
+              <img src="assets/projects/job-portal/cart.png" alt="Restaurant - ตะกร้าสินค้า">
+              <img src="assets/projects/job-portal/order-mobile.png" alt="Restaurant - ออเดอร์">
+              <img src="assets/projects/job-portal/register.png" alt="Restaurant - สมัครสมาชิก">
+              <img src="assets/projects/job-portal/mobile.png" alt="Restaurant - มือถือ">
+              <img src="assets/projects/job-portal/profile.png" alt="Restaurant - โปรไฟล์">
+            </div>
+            <button class="gallery-nav gallery-nav--prev" onclick="galleryPrev('restaurant')"><i class="fa-solid fa-chevron-left"></i></button>
+            <button class="gallery-nav gallery-nav--next" onclick="galleryNext('restaurant')"><i class="fa-solid fa-chevron-right"></i></button>
+            <div class="gallery-dots" id="dots-restaurant">
+              <span class="gallery-dot active" onclick="galleryGo('restaurant',0)"></span>
+              <span class="gallery-dot" onclick="galleryGo('restaurant',1)"></span>
+              <span class="gallery-dot" onclick="galleryGo('restaurant',2)"></span>
+              <span class="gallery-dot" onclick="galleryGo('restaurant',3)"></span>
+              <span class="gallery-dot" onclick="galleryGo('restaurant',4)"></span>
+              <span class="gallery-dot" onclick="galleryGo('restaurant',5)"></span>
+              <span class="gallery-dot" onclick="galleryGo('restaurant',6)"></span>
+            </div>
+          </div>
+          <div class="project-showcase__info">
+            <span class="project-showcase__badge">Web Application</span>
+            <h3 class="project-showcase__title">Made-to-Order Restaurant</h3>
+            <p class="project-showcase__desc" data-i18n="restaurantDesc">ระบบร้านอาหารสั่งตามออเดอร์ มี menu management, order tracking และ QR code สำหรับสั่งอาหารที่โต๊ะ</p>
+            <div class="project-tags">
+              <span>Next.js</span><span>Spring Boot</span><span>MySQL</span><span>QR Code</span>
+            </div>
+            <div class="project-showcase__actions">
+              <a href="https://github.com/Tinnaphatpan/made-to-order-restaurant" target="_blank" rel="noopener" class="project-github-btn"><i class="fa-brands fa-github"></i> GitHub</a>
+            </div>
+          </div>
+        </div>
+
       </section>
 
       <!-- EDUCATION -->
@@ -259,5 +298,6 @@
   </main>
 
   <script src="js/main.js"></script>
+  <script src="js/three-effects.js"></script>
 </body>
 </html>
