@@ -270,13 +270,19 @@ img { display: block; max-width: 100%; }
    SECTION TITLE
    ===================================================== */
 .section-title {
-  font-family: var(--font-body);
-  font-size: 1rem;
-  font-weight: 600;
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  font-weight: 400;
+  color: var(--color-text);
+  letter-spacing: 0;
+  text-transform: none;
+  line-height: 1.2;
+  margin-bottom: 10px;
+}
+.section-subtitle {
+  font-size: 0.88rem;
   color: var(--color-muted);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  margin-bottom: 24px;
+  margin-bottom: 32px;
 }
 
 .content-section {
@@ -474,7 +480,7 @@ img { display: block; max-width: 100%; }
   backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
-  transition: border-color 0.3s, transform 0.3s;
+  transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
 }
 .edu-card::before {
   content: '';
@@ -484,9 +490,23 @@ img { display: block; max-width: 100%; }
   background: linear-gradient(90deg, #6366f1, #8b5cf6, #3b82f6);
   border-radius: var(--radius) var(--radius) 0 0;
 }
+.edu-card::after {
+  content: 'KMUTNB';
+  position: absolute;
+  right: -24px; bottom: -28px;
+  font-family: var(--font-display);
+  font-size: 7.5rem;
+  color: rgba(99,102,241,0.05);
+  pointer-events: none;
+  user-select: none;
+  line-height: 1;
+  white-space: nowrap;
+  font-weight: 700;
+}
 .edu-card:hover {
-  border-color: rgba(99,102,241,0.35);
+  border-color: rgba(99,102,241,0.4);
   transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(99,102,241,0.12);
 }
 
 /* Logos */
@@ -506,7 +526,12 @@ img { display: block; max-width: 100%; }
   align-items: center;
   justify-content: center;
   padding: 10px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3), 0 0 0 1px rgba(99,102,241,0.15);
+  transition: box-shadow 0.3s, transform 0.3s;
+}
+.edu-logo-wrap:hover {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.4), 0 0 24px rgba(99,102,241,0.25);
+  transform: translateY(-3px);
 }
 .edu-logo-wrap--major {
   width: 80px;
@@ -583,6 +608,21 @@ img { display: block; max-width: 100%; }
   color: #a5b4fc;
 }
 .edu-card__tags span i { font-size: 0.7rem; }
+
+/* Pulsing enrollment dot */
+.edu-pulse-dot {
+  display: inline-block;
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #34d399;
+  margin-right: 7px;
+  vertical-align: middle;
+  animation: eduPulse 2s ease-in-out infinite;
+}
+@keyframes eduPulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(52,211,153,0.5); }
+  50% { box-shadow: 0 0 0 5px rgba(52,211,153,0); }
+}
 
 @media (max-width: 640px) {
   .edu-card { flex-direction: column; align-items: flex-start; gap: 24px; padding: 28px 24px; }
@@ -698,6 +738,60 @@ img { display: block; max-width: 100%; }
   flex-direction: column;
   gap: 18px;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+.project-number {
+  position: absolute;
+  bottom: -32px; right: -10px;
+  font-family: var(--font-display);
+  font-size: 10rem;
+  color: rgba(255,255,255,0.03);
+  line-height: 1;
+  user-select: none;
+  pointer-events: none;
+  font-weight: 700;
+}
+
+/* Status badge */
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 4px 11px;
+  border-radius: 99px;
+  background: rgba(52,211,153,0.1);
+  border: 1px solid rgba(52,211,153,0.3);
+  color: #34d399;
+  align-self: flex-start;
+}
+.project-status--github {
+  background: rgba(255,255,255,0.05);
+  border-color: rgba(255,255,255,0.13);
+  color: var(--color-muted);
+}
+.status-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  animation: statusPulse 2s ease-in-out infinite;
+}
+.project-status--github .status-dot { animation: none; }
+@keyframes statusPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* Badges row */
+.project-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
 }
 .project-showcase__badge {
   display: inline-flex;
